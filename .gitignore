@@ -11,3 +11,7 @@ wheels/
 
 # Tokens and stuff
 .env
+
+# Output dir
+/output/*
+!/output/.keep

@@ -1,4 +1,5 @@
 import io
+import logging
 
 import av
 import numpy as np
@@ -47,3 +48,24 @@ def np_wav_to_compressed_buffer(sample_rate: int, wav: np.ndarray):
     # buf.seek(0)  # Reset buffer position for reading.
 
     return buf
+
+
+def setup_logging(log_path):
+    logger = logging.getLogger("app")
+    logger.setLevel(logging.INFO)
+
+    # File handler
+    fh = logging.FileHandler(log_path)
+    fh.setLevel(logging.INFO)
+    fh.setFormatter(
+        logging.Formatter("%(asctime)s|%(levelname)s: %(message)s", datefmt="%H:%M:%S")
+    )
+    logger.addHandler(fh)
+
+    # Console handler
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
+    ch.setFormatter(
+        logging.Formatter("%(asctime)s|%(levelname)s: %(message)s", datefmt="%H:%M:%S")
+    )
+    logger.addHandler(ch)

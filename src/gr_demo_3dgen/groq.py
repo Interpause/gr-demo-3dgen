@@ -11,10 +11,10 @@ from groq.types.chat.completion_create_params import (
     ResponseFormatResponseFormatJsonSchema,
     ResponseFormatResponseFormatJsonSchemaJsonSchema,
 )
-from PIL.Image import Image
+from PIL import Image
 from pydantic import BaseModel
 
-log = logging.getLogger(__name__)
+log = logging.getLogger("app.groq")
 
 # https://console.groq.com/docs/speech-to-text
 STT_MODEL = "distil-whisper-large-v3-en"
@@ -59,7 +59,7 @@ PROMPT_EXAMPLES = [
 
 
 def groq_describe_image(
-    client: groq.Client, image: Image, description: str | None = None
+    client: groq.Client, image: Image.Image, description: str | None = None
 ):
     buf = io.BytesIO()
     image.save(buf, format="webp", quality=70)
