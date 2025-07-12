@@ -687,7 +687,7 @@
       "cfg": 8,
       "sampler_name": "euler_ancestral",
       "scheduler": "karras",
-      "denoise": 0.8000000000000002,
+      "denoise": 0.775,
       "model": [
         "189",
         0

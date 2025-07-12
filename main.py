@@ -133,4 +133,4 @@ with gr.Blocks(head=HEAD) as demo:
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)
