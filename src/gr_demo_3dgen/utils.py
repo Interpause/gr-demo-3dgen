@@ -8,8 +8,13 @@ import numpy as np
 def np_wav_to_compressed_buffer(sample_rate: int, wav: np.ndarray):
     """Compress raw audio and store inside a file buffer."""
     # Some assumptions about audio passed from gradio:
-    assert wav.ndim == 2 and wav.shape[1] == 2
     assert wav.dtype == np.int16
+    # Mono without channel dim.
+    if wav.ndim == 1:
+        wav = np.tile(wav[:, None], (1, 2))
+    # mono with channel dim.
+    elif wav.ndim == 2 and wav.shape[1] == 1:
+        wav = np.tile(wav, (1, 2))
 
     # Groq downsamples to 16kHz mono, so we compress to that to save bandwidth.
     # Balance between file size (upload speed) and decode latency.
